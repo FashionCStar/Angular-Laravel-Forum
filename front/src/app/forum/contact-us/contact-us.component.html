@@ -1,0 +1,59 @@
+  <mat-card>
+    <mat-card-header class="bg-header text-black">
+
+      <mat-card-title>
+        <span class="title">Contact Us</span>
+      </mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" style="text-align: center">
+        <div fxLayout="row wrap" style="text-align: center; width: 70%; margin-left: 50px">
+          <!-- col full-->
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field>
+              <input matInput placeholder="Full Name" [formControl]="form.controls['name']" required>
+            </mat-form-field>
+            <small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="text-danger support-text">Name is required.</small>
+          </div>
+
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field>
+              <input matInput placeholder="Email" [formControl]="form.controls['email']" required>
+            </mat-form-field>
+            <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="text-danger support-text">Email is required.</small>
+            <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="text-danger support-text">You must include a valid email address.</small>
+          </div>
+          <!-- col full-->
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field>
+              <input matInput placeholder="Subject" [formControl]="form.controls['subject']" required>
+            </mat-form-field>
+            <small *ngIf="form.controls['subject'].hasError('required') && form.controls['subject'].touched" class="text-danger support-text">Subject is required.</small>
+          </div>
+
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <mat-form-field>
+              <textarea matInput type="text" placeholder="Message" [formControl]="form.controls['content']" required></textarea>
+            </mat-form-field>
+            <small *ngIf="form.controls['content'].hasError('required') && form.controls['content'].touched" class="text-danger support-text">Content is required.</small>
+          </div>
+          <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <re-captcha class="captchaRef" (captchaResponse)="resolved($event)"
+                        site_key="6LcC0FEUAAAAAGTwUL8GCU8b0_i8z03dv3NpwFcJ"
+                        style="-moz-transform:scale(0.77); -ms-transform:scale(0.77);
+                       -o-transform:scale(0.77); -moz-transform-origin:0; -ms-transform-origin:0;
+                        -o-transform-origin:0; -webkit-transform:scale(0.77); transform:scale(0.77);
+                         -webkit-transform-origin:0 0; transform-origin:0;
+                         filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.77,M12=0,M21=0,M22=0.77,SizingMethod='auto expand');"></re-captcha>
+          </div>
+          <!-- col full-->
+          <div fxFlex.gt-sm="30" fxFlex.gt-xs="30" fxFlex="30" style="text-align: center">
+            <!--<button mat-raised-button color="primary" class="btn-block btn-lg m-t-20" type="submit" [disabled]="!(form.valid && checkBot)">Submit</button>-->
+            <button mat-raised-button color="accent" style="width: 80px;"
+                    class="my-button m-t-20" type="submit" [disabled]="!(form.valid && checkBot)">Submit</button>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

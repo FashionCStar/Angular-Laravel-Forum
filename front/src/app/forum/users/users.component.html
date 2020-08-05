@@ -1,0 +1,51 @@
+<div class="content-wrap">
+  <mat-card style="min-width: 700px">
+      <mat-card-content>
+        <div class="t-header">
+          <mat-card-title>Users</mat-card-title>
+          <!--<button mat-raised-button color="primary" class="pull-right" (click)="addNewUser()" style="margin-left: 10px">-->
+            <!--<mat-icon>add</mat-icon>Add New User</button>-->
+        </div>
+        <div class="table-rasponsive">
+          <mat-table #table [dataSource]="dataSource" matSort>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="username">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+            </ng-container>
+
+            <!-- Price Column -->
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="option">
+              <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Activate Status" (click)="$event.stopPropagation();toggleStar(element)"
+                        aria-label="Toggle star">
+                  <mat-icon style="color: #3f77e4" class="amber-fg" *ngIf="element.is_activated==1">check_circle</mat-icon>
+                  <mat-icon class="secondary-text" *ngIf="element.is_activated==0">block</mat-icon>
+                </button>
+                <!--<a class="option-edit" (click)="$event.stopPropagation();editData(element)"-->
+                   <!--matTooltip="Edit User">-->
+                  <!--<mat-icon style="color: #3f77e4">edit</mat-icon>-->
+                <!--</a>-->
+                <a class="option-edit" (click)="$event.stopPropagation();deleteData(element)"
+                   matTooltip="Delete User">
+                  <mat-icon style="color: #e42b17; margin-top: 7px;">delete_forever</mat-icon>
+                </a>
+              </mat-cell>
+
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card-content>
+   </mat-card>
+</div>

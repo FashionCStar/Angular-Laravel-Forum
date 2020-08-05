@@ -1,0 +1,17 @@
+.dg-close {
+  float: right;
+}
+.confirm-content {
+  text-align: center;
+}
+.dg-header {
+  border-bottom: 1px solid #d4cfcf;
+  font-size: 20px;
+}
+:host /deep/ .mat-dialog-container {
+  padding: 10px !important;
+  overflow: hidden !important;
+}
+a:hover {
+  cursor: pointer;
+}

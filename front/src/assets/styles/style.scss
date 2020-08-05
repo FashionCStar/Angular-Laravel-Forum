@@ -1,0 +1,92 @@
+/*
+Template Name: Material Pro Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/**
+ * Table Of Content
+ *
+ * 	1. Globals
+ *	2. Headers
+ *	3. Navigations
+ *	4. Banners
+ *	5. Footers
+ *	6. app
+ *	7. Widgets
+ *	8. Custom Templates
+ */
+
+@import 'variable';
+
+
+@import 'icons/themify-icons/themify-icons.css';
+@import 'icons/font-awesome/css/font-awesome.css';
+@import 'spinner';
+@import 'app';
+@import 'header';
+@import 'widgets';
+@import 'pages';
+@import 'sidebar';
+@import 'dark-sidebar';
+@import 'responsive';
+@import 'rtl';
+
+
+// Red Theme
+
+.danger {  
+	@import 'colors/red';
+	@include angular-material-theme($red-app-theme);
+}
+
+// Blue Theme
+
+.blue { 
+	@import 'colors/blue'; 
+  	@include angular-material-theme($blue-app-theme);
+}
+
+// Green Theme
+
+.green {  
+	@import 'colors/green';
+  	@include angular-material-theme($green-app-theme);
+}
+
+// Dark Theme
+
+.dark { 
+	@import 'colors/dark'; 
+  	@include angular-material-theme($dark-theme); 
+}
+.saperator {
+	cursor: text;
+	font-size: 18px !important;
+	background-color: #1e88e538;
+	margin: 0 !important;
+	height: 30px;
+	border-bottom: 2px solid #3b5160;
+	span {
+		color: #1c598e;
+		margin-left: 30px
+	;
+	}
+}
+
+:host /deep/ .mat-sort-header-arrow {
+	// transform: translateY(0px) !important;
+	opacity: 1 !important;
+}
+.mat-row{
+	min-height: 30px !important;
+}
+p{
+	margin-block-start: 0.5em !important;
+	margin-block-end: 0.5em !important;
+
+}
+$custom-typography: mat-typography-config(
+$font-family: 'Arial,Tahoma,Verdana,Helvetica,sans-serif'
+); 
+@include mat-core($custom-typography);

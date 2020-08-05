@@ -1,0 +1,64 @@
+:host {
+  //margin: -6px -5px;
+  //display: block;
+}
+
+.top-header {
+  display: flex;
+  //justify-content: space-between;
+  button {
+    max-height: 30px;
+    background: #2789CE;
+    margin-top: 12px;
+    line-height: 0;
+  }
+}
+:host /deep/ .mat-card-header {
+  padding: 4px !important;
+}
+:host /deep/ .mat-card {
+  padding: 0 !important;
+}
+
+:host /deep/ .mat-tab-labels {
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,#ffffff), color-stop(100%, rgba(59, 81, 96, 0.26)));
+}
+:host /deep/ mat-header-row {
+  min-height: 35px;
+  background: #eceef0;
+  span {
+    color: #000;
+    font-size: 14px;
+  }
+}
+:host /deep/ mat-footer-row, mat-row {
+  min-height: 35px;
+}
+:host /deep/ .mat-row:nth-child(even){
+  background-color: #fff;
+}
+
+:host /deep/ .mat-row:nth-child(odd){
+  background-color: #F7F9FB;
+}
+.link {
+  a:hover {
+    cursor: pointer;
+  }
+}
+.mat-h-title {
+  color: #000;
+  font-size: 14px;
+}
+:host /deep/ html .page-wrapper .page-content {
+  padding: 0 !important;
+}
+:host /deep/  .mat-card-content {
+  padding: 20px !important;
+}
+.captchaRef {
+  //display: inline-block;
+}
+.text-xs-center {
+  text-align: center;
+}

@@ -1,0 +1,73 @@
+<div class="preloader" *ngIf="isSpinnerVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div class="row" style="margin: 0 0; display: flex">
+  <div fxFlex.gt-sm="100" fxFlex="100">
+    <mat-card>
+      <mat-card-header class="bg-header text-black">
+
+        <mat-card-title>
+          <span class="title">Search Result</span>
+        </mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content>
+        <div fxFlex.gt-sm="100" fxFlex="100">
+          <mat-card>
+            <!--// user-->
+            <div *ngIf="users.length > 0">
+              <mat-card-header>
+                <mat-card-title style="margin-left: 3px; display: flex;">
+                  <!--<img src="assets/images/football.jpg" alt="football" style="width: 30px">-->
+                  <span style="font-size: 16px; color: #3b515f; margin: 3px 15px;">Users ({{usercount}})</span>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div fxLayout="row wrap">
+                  <div *ngFor="let user of users" class="recent-content" fxFlex.gt-sm="100" fxFlex="100">
+                    <!--<p><a [routerLink]="['/forum/football/post', {topic: forum.id}]">{{forum.title}}</a></p>-->
+                    <span style="height: 50px; display: flex">
+                      <img *ngIf="user.avatar_path" [src]="user.avatar_path" alt="football" class="useriamge">
+                      <img *ngIf="!user.avatar_path" src="assets/images/man.png" alt="football" class="useriamge">
+                      <div style="display: grid">
+                        <a (click)="goToUser(user)">{{user.username}}</a>
+                        <span class="before" style="color: #161725;"><span>Joined: </span>{{user.created_at | date: 'mediumDate'}}</span>
+                      </div>
+                    </span>
+                  </div>
+                  <div *ngIf="usercount > 10" class="more">
+                      <a (click)="viewAllUser()">More User Results ({{usercount}} Total)</a>
+                  </div>
+                </div>
+              </mat-card-content>
+            </div>
+            <!--// football-->
+            <div *ngIf="topics.length > 0">
+              <mat-card-header>
+                <mat-card-title style="margin-left: 3px; display: flex;">
+                  <!--<img src="assets/images/football.jpg" alt="football" style="width: 30px">-->
+                  <span style="font-size: 16px; color: #3b515f; margin: 3px 15px;">Forums ({{topiccount}})</span>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div fxLayout="row wrap">
+                  <div *ngFor="let forum of topics" class="recent-content" fxFlex.gt-sm="100" fxFlex="100">
+                    <p><a [routerLink]="['/forum/football/post', {topic: forum.id}]">{{forum.title}}</a></p>
+                    <span [innerHtml]="forum.content"></span>
+                  </div>
+                  <div *ngIf="topiccount > 10" class="more" style="height: 25px;">
+                      <a (click)="viewAllTopic()">More Topic Results ({{topiccount}} Total)</a>
+                  </div>
+                </div>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

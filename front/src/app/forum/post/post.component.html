@@ -1,0 +1,234 @@
+<div class="preloader" *ngIf="isSpinnerVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<div class="content-wrap">
+  <mat-card style="min-width: 700px">
+  <mat-card-header class="bg-header text-black">
+    <mat-card-title  style="min-height: 30px">
+      <span class="title">{{topic.title}}</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxFlex.gt-sm="100" fxFlex="100">
+      <mat-card style="margin: 0 !important;">
+        <!--<mat-tab-group>-->
+          <!--&lt;!&ndash; Tab 1 &ndash;&gt;-->
+          <!--<mat-tab label="Forum">-->
+            <mat-card-content>
+              <div class="toplabel">
+                <!--<span>There is currently 1 person viewing this thread.</span>-->
+                <a (click)="goBack()" style="float: right"> < back</a>
+              </div>
+              <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <div class="topic-content">
+                  <div class="header">
+                    <a>{{topic.title}}</a>
+                    <div style="display: flex">
+                      <img *ngIf="topic.user?.avatar_path" [src]="user?.avatar_path" alt="football" class="useriamge">
+                      <img *ngIf="!topic.user?.avatar_path" src="assets/images/man.png" alt="football" class="useriamge">
+                      <div style="display: grid">
+                        <div class="user-info">
+                          <a (click)="goToUser(topic)" style="margin: 3px 5px;">{{topic.user?.username}}</a>
+                          <span style="color: #161725;">{{topic.created_at | date: 'mediumDate'}}</span>
+                        </div>
+                        <div class="user-info botom">
+                          <span class="before" style="color: #161725;"><span>Joined: </span>{{topic.user?.created_at | date: 'mediumDate'}}</span>
+                          <span class="last" style="color: #161725;"><span>Topic/replies: </span>{{topic.posts?.length}}</span>
+                          <!--<span class="last" style="color: #161725;"><span>Blogger: </span><a style="margin: 3px 5px;">{{topic.user?.username}}'s blog</a></span>-->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="body" [innerHtml]="topic.content">
+                  </div>
+                  <div class="footer">
+                    <a href="http://facebook.com" target="_blank"><img src="assets/images/social/facebook.png" alt="facebook"></a>
+                    <a href="http://twitter.com" target="_blank"><img src="assets/images/social/twitter.png" alt="twitter"></a>
+                    <a href="http://youtube.com" target="_blank"><img src="assets/images/social/youtube.png" alt="youtube"></a>
+                    <!--<a><img src="assets/images/social/twitter.png" alt="twitter" style="width: 30px"></a>-->
+                  </div>
+                </div>
+              </div>
+              <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                <div class="post-content">
+                  <div class="header">
+                      <span>{{topic.title | uppercase}}</span>
+                    <a *ngIf="play" (click)="onPlay(false)">
+                      <span>Pause</span>
+                      <img src="assets/images/chat-pause.png" alt="pause" style="width: 16px">
+                    </a>
+                    <a *ngIf="!play" (click)="onPlay(true)">
+                      <span>play</span>
+                      <img src="assets/images/chat-play.png" alt="play" style="width: 16px">
+                    </a>
+                  </div>
+                  <div class="body">
+                    <div *ngFor="let post of topic.posts; let i = index">
+                      <a (click)="goToUser(post)">{{post.username}}</a>
+                      <span style="color: #576065de;"> - {{post.created_at | date: 'medium'}}</span>
+                      <span class="" [innerHtml]="post.content">
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" style="padding-bottom: 1px;">
+                <div class="reply-content" [ngClass]="user? 'active' : 'deactive'">
+                  <div class="header">
+                    <span *ngIf="user">Post Your Reply</span>
+                    <span *ngIf="!user" style="color: rosybrown">Please login and Post Your Reply</span>
+                    <!--<a style="margin: 3px 5px;">{{topic.user?.username}}</a>-->
+                  </div>
+                  <div class="body">
+                    <quill-editor theme="bubble" [style]="{height: '70px'}"
+                                  [formControl]="form.controls['content']"></quill-editor>
+                  </div>
+                  <div class="footer">
+                    <button mat-raised-button color="accent" class="submit-button pull-right" type="button" (click)="onReply()">Reply</button>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          <!--</mat-tab>-->
+          <!-- End Tab 1 -->
+          <!-- Tab 2 -->
+          <!--<mat-tab label="Football Blogs">-->
+            <!--<mat-card-content>-->
+              <!--<div class="table-responsive">-->
+                <!--<div class="top-header">-->
+                  <!--<mat-paginator [length]="totalCount"-->
+                                 <!--[pageSize]="pageSize"-->
+                                 <!--[pageIndex]="pageIndex"-->
+                                 <!--[pageSizeOptions]="[30, 50, 100]"-->
+                                 <!--(page)="setPage($event)">-->
+                  <!--</mat-paginator>-->
+                <!--</div>-->
+
+                <!--<div class="mat-table">-->
+                  <!--<span *ngIf="forums.length < 1">there is no any Topic yet</span>-->
+                  <!--<div *ngFor="let forum of forums">-->
+                    <!--<div id="bgBlogWrapperMain">-->
+                      <!--<div class="bfBlogPostTitle"><a style="color: #2789CE; font-weight: 500" href="https://community.betfair.com/racecaller08/blog/2011/10/17/breeders-cup-classic-10-year-trends">BREEDERS' CUP CLASSIC 10-YEAR-TRENDS</a></div>-->
+                      <!--<div style="display: flex">-->
+                        <!--<div id="bgBlogWrapperInner" class="blogInfoBoxContent">-->
+                          <!--<div class="bfBlogPostMeta">-->
+                            <!--<div>-->
+                              <!--<span class="bfMetaPostItem bfMetaPostStarted">-->
+                                <!--<span class="bfMetaPostItemLabel bfMetaPostStartedLabel">Posted: </span>-->
+                                <!--<span class="bfMetaPostItemValue bfMetaPostStartedValue">17 Oct 11 14:58</span>-->
+                              <!--</span>-->
+                              <!--<span class="bfMetaPostItem bfMetaPostFollowers">-->
+                                <!--<span class="bfMetaPostItemLabel bfMetaPostFollowersLabel">Followers: </span>-->
+                                <!--<span class="bfMetaPostItemValue bfMetaPostFollowersValue">6 people</span>-->
+                              <!--</span>-->
+                            <!--</div>-->
+                            <!--<div class="rating">-->
+                              <!--<star-rating value="5" checkedcolor="#1c74bb" uncheckedcolor="#b8bbbf" size="22px"    readonly="false" (rate)="onRate($event)"></star-rating>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                          <!--<div id="blogPostInfo" class="blogInfoBoxContent">-->
+                            <!--The Breeders’ Cup Classic is the most valuable horse race run in the United States each year and considered by many to be the most prestigious horse race run in the world. Raven’s Pass became the firs-->
+                          <!--</div>-->
+
+                          <!--<div class="blogNumComments">-->
+                            <!--<div>-->
+                              <!--<mat-icon style="color: #1e88e5b3">chat_bubble_outline</mat-icon>-->
+                            <!--</div>-->
+                            <!--<div>-->
+                              <!--<a href="https://community.betfair.com/racecaller08/blog/2011/10/17/breeders-cup-classic-10-year-trends#comments" class="blogNumCommentsLink" title="View comments">-->
+                                <!--<span class="blogNumCommentsNumber">0 Comments</span>-->
+                              <!--</a>-->
+                              <!--<span class="oneBlogViewCountContainer">-->
+                                <!--<span class="oneBrace openingBrace">[</span>-->
+                                <!--<span class="oneBlogViewCount">-->
+                                <!--4020 views							</span>-->
+                                <!--<span class="oneBrace closingBrace">]</span>-->
+                              <!--</span>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                          <!--<div id="followBlogButton">-->
+                          <!--</div>-->
+                        <!--</div>-->
+                        <!--<div id="blogAuthorInfo" class="blogInfoBoxContent">-->
+                          <!--<div class="dialogGatorWrap"></div>-->
+                          <!--<div class="dialog">-->
+                            <!--<div class="hd">-->
+                              <!--<div class="c"></div>-->
+                            <!--</div>-->
+                            <!--<div class="bd">-->
+                              <!--<div class="c">-->
+                                <!--<table align="center" cellspacing="0" cellpadding="0" width="100%">-->
+                                  <!--<tbody><tr>-->
+                                    <!--<td style="vertical-align:middle;">-->
+                                      <!--<div class="miniProfileComponentContainer MiniProfileId_BlogPostUserAvatar">-->
+                                        <!--<div class="miniProfileComponent mpc_badge_stripes">-->
+                                          <!--<div class="miniProfileBadgeStripesContainer">-->
+                                          <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="miniProfileComponent mpc_avatar">-->
+                                          <!--<div class="miniProfileAvatar">-->
+                                            <!--<a href="#" title="Racecaller08">-->
+                                              <!--<img src="assets/images/man.png" style="width: 50px" alt="user">-->
+                                            <!--</a>-->
+                                          <!--</div>-->
+                                        <!--</div>-->
+                                      <!--</div>-->
+                                      <!--<span id="blogPostUserName" class="blogPostUserJoinedValue"><div class="miniProfileComponentContainer MiniProfileId_BlogPostUserName">-->
+                                    <!--<div class="miniProfileComponent mpc_name">-->
+                                    <!--<div class="miniProfileName">-->
+                                    <!--<a href="https://community.betfair.com/racecaller08">-->
+                                    <!--<span>-->
+                                    <!--<span class="userOnlineStats userOffline"></span>-->
+                                    <!--Racecaller08-->
+                                    <!--</span>-->
+                                      <!--</a>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div></span>-->
+                                      <!--<div class="spreader"></div>-->
+                                      <!--<span class="blogPostUserJoinedValue"><div class="miniProfileComponentContainer MiniProfileId_BlogPostUserJoinDate">-->
+                                    <!--<div class="miniProfileComponent mpc_date_joined">-->
+                                    <!--<div class="miniProfileDateJoined">-->
+                                    <!--<span class="labelText">-->
+                                    <!--Date Joined:							</span>-->
+                                    <!--<span class="dateText">-->
+                                    <!--15 Feb 08-->
+                                    <!--</span>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div></span>-->
+                                    <!--</td>-->
+                                  <!--</tr>-->
+                                  <!--</tbody></table>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="ft">-->
+                              <!--<div class="c"></div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="top-header">-->
+                  <!--<mat-paginator [length]="totalCount"-->
+                                 <!--[pageSize]="pageSize"-->
+                                 <!--[pageIndex]="pageIndex"-->
+                                 <!--[pageSizeOptions]="[30, 50, 100]"-->
+                                 <!--(page)="setPage($event)">-->
+                  <!--</mat-paginator>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</mat-card-content>-->
+          <!--</mat-tab>-->
+        <!--</mat-tab-group>-->
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>

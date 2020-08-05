@@ -1,0 +1,79 @@
+<div class="preloader" *ngIf="isSpinnerVisible">
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+<!--<ngx-spinner-->
+    <!--bdColor = "rgba(51,51,51,0.48)"-->
+    <!--size = "medium"-->
+    <!--color = "#fff"-->
+    <!--type = "line-spin-fade"-->
+    <!--[fullScreen] = "false"-->
+<!--&gt;-->
+<!--</ngx-spinner>-->
+<mat-card>
+  <mat-card-header class="bg-header text-black">
+
+    <mat-card-title>
+      <span class="title">{{user.username}}</span>
+    </mat-card-title>
+
+  </mat-card-header>
+  <mat-card-content style="padding: 0">
+    <div fxFlex.gt-sm="100" fxFlex="100">
+      <mat-card  style="margin: 0">
+        <mat-tab-group [ngStyle]="{'min-height': height + 'px'}">
+          <!-- Tab 1 -->
+          <mat-tab label="Over View">
+            <mat-card-content class="card-content">
+              <div class="header">
+                <span>Latest Activity</span>
+                <div class="activity">
+                  <div class="data" *ngIf="user.topics?.length > 0">
+                    <div class="t-h">
+                      Topics
+                    </div>
+                    <div class="t-b" *ngFor="let topic of user.topics">
+                      <span>{{topic.created_at | date: 'mediumDate'}}</span>
+                      <div>
+                        <span><strong>{{user.username }}</strong> created a new thread
+                          <a (click)="goToTopic(topic)">{{topic.title}}</a></span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="data" *ngIf="user.posts?.length > 0">
+                    <div class="t-h">
+                      Posts
+                    </div>
+                    <div class="t-b" *ngFor="let post of user.posts">
+                      <span>{{post.created_at | date: 'mediumDate'}}</span>
+                      <div>
+                        <span><strong>{{user.username }}</strong> posted on forum
+                          <a (click)="goToTopic(post, post.discussion_id)">{{post.topic_name}}</a></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-tab>
+           <!--End Tab 1 -->
+           <!--Tab 2 -->
+          <mat-tab label="About Me">
+            <mat-card-content class="card-content">
+              <div class="aboutme">
+                <span>User Name:  {{user.username}}</span>
+                <span>First Name:  {{user.first_name}}</span>
+                <span>Last Name:  {{user.last_name}}</span>
+
+                <!--<span>Email:  {{user.email}}</span>-->
+              </div>
+            </mat-card-content>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

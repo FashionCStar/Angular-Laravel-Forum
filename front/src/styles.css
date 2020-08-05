@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+.mat-list-base {
+    padding-top: 0 !important;
+}
+.mat-list-item-content > a {
+    height: 30px !important;
+    background-color: #E9EBEC !important;
+}
+.mat-nav-list .mat-list-item.selected > .mat-list-item-content > a {
+    height: 30px !important;
+}
+.mat-nav-list .mat-list-item a {
+    margin-bottom: 0 !important;
+    color: #050304 !important;
+    border-bottom: 1px solid #FFF !important;
+}
+.mat-nav-list .mat-list-item .mat-list-item-content {
+    padding: 0 0 !important;
+}
+.logo-icon {
+    width: 100px;
+    height: auto;
+}
+.topbar {
+    background-color: #fafafa !important;
+}
+.profile-text {
+    border-bottom: 2px solid #3b5160;
+}
+.bg-header {
+    background-color: #1e88e5;
+    border-bottom: 2px solid #3b5160;
+}
+
+.blue .mat-tab-group.mat-primary .mat-ink-bar, .blue .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #3b5160 !important;
+}
+.mat-drawer.mat-drawer-side {
+    margin-top: 10px;
+}
+.page-wrapper .page-content {
+    padding: 0 !important;
+}
+a {
+    color: #1e88e5;
+}
+.mat-dialog-container {
+    padding: 10px !important;
+    overflow: hidden !important;
+}
+.mat-ink-bar, .blue .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    height: 3px !important;
+}
+.mat-drawer-inner-container {
+    background: #e9ebec;
+}
+.seach-input .seach-btn{
+    height: 20px;
+    margin-right: 3px !important;
+}
+.mat-drawer-content {
+    /*overflow: hidden !important;*/
+}
+.my-button {
+    /*max-height: 30px;*/
+    margin-top: 12px;
+    line-height: 0;
+    margin-left: 10px;
+    /*min-width: 120px;*/
+    background: rgb(68, 138, 255);
+}
+.title{
+    color: white;
+}
+.mat-card-title {
+    min-height: 30px;
+}
+.useriamge {
+    width: 50px;
+    height: 50px;
+}
+.mat-card-header .mat-card-title {
+    margin-bottom: -7px !important;
+}
+.mat-column-title {
+    flex: 0 0 40%;
+}
+.mat-column-author {
+    flex: 0 0 20%;
+}
+.mat-column-posts {
+    flex: 0 0 7%;
+}
+.mat-column-view_count {
+    flex: 0 0 7%;
+}
+.mat-column-latestpost {
+    flex: 0 0 22%;
+}
+
+.mat-column-option {
+    flex: 0 0 30px;
+}
+.content-wrap {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .content-wrap {
+        overflow: auto;
+    }
+}

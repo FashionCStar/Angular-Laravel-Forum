@@ -1,0 +1,13 @@
+<a (click)="onCancel()"><mat-icon class="dg-close">clear</mat-icon></a>
+<div>
+  <div class="dg-header">
+    <span>Confirmation</span>
+  </div>
+  <div class="confirm-content">
+    <p>{{msg}}</p>
+    <mat-card-actions style="float: right">
+      <button mat-raised-button color="primary" type="button" (click)="onYes()">Yes</button>
+      <button mat-raised-button color="primary" type="button" (click)="onCancel()" tabindex="-1">No</button>
+    </mat-card-actions>
+  </div>
+</div>

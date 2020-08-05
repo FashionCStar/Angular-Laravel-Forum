@@ -1,0 +1,9 @@
+.content-wrap {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .content-wrap {
+        overflow: auto;
+    }
+}

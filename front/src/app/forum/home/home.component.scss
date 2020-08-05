@@ -1,0 +1,54 @@
+:host /deep/ .mat-card {
+  padding: 0 !important;
+  margin: 10px;
+}
+:host /deep/ .mat-card-header {
+  padding: 4px !important;
+  border-radius: 0 0;
+}
+:host /deep/ .mat-card-content {
+  padding: 0;
+  margin-bottom: 0;
+  .mat-card {
+    margin: 0;
+    .mat-card-header {
+      height: 39px;
+      background: -webkit-linear-gradient(top, #ffffff 0%, #1e88e585 100%);
+      .mat-card-header-text {
+        margin: 0 !important;
+      }
+    }
+  }
+}
+.big-discuss {
+  background-color: #1e88e5 !important;
+  color: #fff;
+  height: 35px;
+}
+.bg-header {
+  height: 35px;
+}
+.big-content {
+  padding: 10px;
+  min-height: 150px;
+  background-color: #b6dbe859;
+}
+
+.recent-content {
+  padding: 5px;
+  clear: left;
+  border-bottom: 1px solid #c6d5e0;
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+  p {
+    margin: 0;
+    a {
+      font-weight: bold;
+      color: #2789CE;
+    }
+    a:hover {
+      cursor: pointer;
+      color: #29a9fa;
+    }
+  }
+}

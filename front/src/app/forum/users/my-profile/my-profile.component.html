@@ -1,0 +1,89 @@
+<ngx-spinner
+    bdColor = "rgba(51,51,51,0.48)"
+    size = "medium"
+    color = "#fff"
+    type = "line-spin-fade"
+    [fullScreen] = "false"
+>
+</ngx-spinner>
+<!--<div class="preloader" *ngIf="isSpinnerVisible">-->
+  <!--<div class="spinner">-->
+    <!--<div class="double-bounce1"></div>-->
+    <!--<div class="double-bounce2"></div>-->
+  <!--</div>-->
+<!--</div>-->
+<mat-card>
+  <mat-card-header class="bg-header text-black">
+
+    <mat-card-title>
+      <span class="title">My Profile</span>
+    </mat-card-title>
+
+  </mat-card-header>
+  <mat-card-content style="padding: 0">
+    <div fxFlex.gt-sm="100" fxFlex="100">
+      <mat-card  style="margin: 0">
+        <mat-tab-group [ngStyle]="{'min-height': height + 'px'}">
+          <mat-tab label="About Me">
+            <mat-card-content class="card-content">
+              <div class="aboutme">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                  <div class="text-center image">
+                    <img *ngIf="user.avatar_path && !avataURL" alt="homepage" class="logo-icon" [src]="user.avatar_path">
+                    <img *ngIf="avataURL" alt="homepage" class="logo-icon" [src]="avataURL">
+                    <img *ngIf="!user.avatar_path && !avataURL" alt="homepage" class="logo-icon" src="assets/images/man.png">
+                    <button type="button" mat-raised-button class="btn my-button" (click)="fileInput.click()">upload image</button>
+                    <input hidden type="file" accept="image/*" (change)="selectimage($event)" #fileInput>
+                  </div>
+
+                  <div fxLayout="row wrap">
+                    <!-- col full-->
+                    <!--<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">-->
+                      <!--<mat-form-field>-->
+                        <!--<input matInput type="text" placeholder="User Name" [formControl]="form.controls['username']" [disabled]="true">-->
+                      <!--</mat-form-field>-->
+                      <!--<small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="text-danger support-text">User name is required.</small>-->
+                    <!--</div>-->
+                    <!-- col full-->
+
+
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="First Name" [formControl]="form.controls['first_name']">
+                      </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Last Name" [formControl]="form.controls['last_name']">
+                      </mat-form-field>
+                    </div>
+
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+                      <mat-form-field>
+                        <input matInput placeholder="Email" [formControl]="form.controls['email']">
+                      </mat-form-field>
+                      <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="text-danger support-text">Email is required.</small>
+                      <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="text-danger support-text">You must include a valid email address.</small>
+                    </div>
+
+                    <!--<div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">-->
+                      <!--<mat-form-field>-->
+                        <!--<input matInput type="text" placeholder="Phone" [formControl]="form.controls['username']" [disabled]="true">-->
+                      <!--</mat-form-field>-->
+                      <!--<small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="text-danger support-text">User name is required.</small>-->
+                    <!--</div>-->
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                      <button mat-raised-button color="accent" style="width: 80px;"
+                              class="my-button pull-right" type="submit" [disabled]="!form.valid">Save</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </mat-card-content>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>
